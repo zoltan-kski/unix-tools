@@ -1,0 +1,4 @@
+#!/bin/sh
+
+
+rxvt-unicode -name ncmpcpp-top -e ncmpcpp

@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+
+file_prefix="/home/zo/.screenshots/screenshot_$(date +%Y-%m-%d_%H:%M:%S)"
+
+
+import_all_screens() {
+    dimensions=$(xrandr | grep -Eo 'connected [0-9x+]+' | cut -d ' ' -f 2)
+
+    idx=1
+    for screen in ${dimensions}
+    do
+        geometry=$(echo "${screen}" | cut -d  '+' -f 1)
+        echo ">> [$geometry] {${screen}}"
+
+        import -geometry "${geometry}+0+0" -crop "${screen}" -window root "${file_prefix}-${idx}.png"
+        idx=$(($idx+1))
+    done
+}
+
+
+case "$1" in
+    "all")
+        import_all_screens
+        ;;
+    "manual")
+        import "${file_prefix}.png"
+    ;;
+    *)
+        echo "Unknown option."
+    ;;
+esac

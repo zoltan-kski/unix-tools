@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 
-file_prefix="/home/zo/.screenshots/screenshot_$(date +%Y-%m-%d_%H:%M:%S)"
+file_prefix="${HOME}/.screenshots/screenshot_$(date +%Y-%m-%d_%H:%M:%S)"
 
 
 import_all_screens() {
